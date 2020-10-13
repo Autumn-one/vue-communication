@@ -1,0 +1,27 @@
+{
+  "name": "vue-communication",
+  "version": "1.0.0",
+  "description": "vue的可观测组件通信解决方案，适合个别组件互相直接通信",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://baidu.com"
+  },
+  "keywords": [
+    "vue-communication",
+    "vue",
+    "communication",
+    "组件",
+    "通信",
+    "组件通信",
+    "可观测"
+  ],
+  "author": "木瓜太香",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "vue": "^2.6.12"
+  }
+}
