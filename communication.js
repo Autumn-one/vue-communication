@@ -4,7 +4,7 @@ export default (function () {
     let vm = new Vue();
     let _eventList = [];
     let _offlineList = [];
-    
+
 
     let findItem = function (arr, fn) {
         for (let i = 0; i < arr.length; i++) {
@@ -25,7 +25,7 @@ export default (function () {
     let startsWith = (fullStr, startStr) => {
         return fullStr.indexOf(startStr) === 0;
     };
-    
+
 
     let checkIntent = intent => {
         let arr = intent.split("-");
@@ -34,7 +34,7 @@ export default (function () {
         }
     };
 
-    
+
     let addIntentToOfflineList = (intent, intentWrap) => {
         let isThisIntentEmptyInOffline = true;
         _offlineList.forEach(iw => iw.intent === intent && (isThisIntentEmptyInOffline = false));
@@ -71,9 +71,7 @@ export default (function () {
         }
     }
 
-    
 
-    
     function _receiverDataHandle (intent) {
         _eventList.push(intent);
 
@@ -107,12 +105,13 @@ export default (function () {
             responseData = responseData[pathArr[i]];
         }
 
+        let lastKey = pathArr[pathArr.length - 1];
         if (isObject(data)) {
             Object.keys(data).forEach(k => {
-                responseData[k] = data[k];
+                responseData[lastKey][k] = data[k];
             });
         } else {
-            responseData[pathArr[0]] = data;
+            responseData[lastKey] = data;
         }
     }
 
@@ -136,9 +135,7 @@ export default (function () {
         });
     }
 
-    
 
-    
     function $sender (intent, dataOrPath, data) {
         checkIntent(intent);
 
@@ -151,7 +148,7 @@ export default (function () {
 
     }
 
-    
+
     function $receiver (intent) {
 
         checkIntent(intent);
