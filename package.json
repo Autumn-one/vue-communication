@@ -1,6 +1,6 @@
 {
   "name": "vue-communication",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue的可观测组件通信解决方案，适合个别组件互相直接通信",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,5 @@
   ],
   "author": "木瓜太香",
   "license": "MPL-2.0",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
