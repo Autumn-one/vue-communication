@@ -1,7 +1,7 @@
 {
   "name": "vue-communication",
   "version": "1.0.3",
-  "description": "vue的可观测组件通信方案，任意关系组件直接通信，组件状态互相监听",
+  "description": "vue的可观测组件通信方案，任意关系组件直接通信，跨组件状态监听",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
