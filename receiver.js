@@ -31,7 +31,7 @@ const receiver = {
 
 
     },
-    modifyHandle (intent, allowSt) {
+    modifyHandle (intent, allowStr) {
         // 检测离线列表
         let tempArr = [];
         queue.modifyOfflineList.forEach(intentWrap => {

@@ -50,7 +50,6 @@ const sender = {
             dataPathStr,
             data
         };
-        console.log(queue.modifyList);
         if (queue.modifyList.indexOf(intent) !== -1) {
             vm.$emit(intent, intentWrap);
         } else {
@@ -61,8 +60,6 @@ const sender = {
     // * 处理发送者的 watch 意图
     watchHandle (intent, dataPathStr, callback) {
         vm.$on(intent, function (intentWrap) {
-            console.log(intentWrap);
-            console.log(dataPathStr);
             let { nv, ov } = intentWrap;
             if (dataPathStr === intentWrap.dataPathStr) {
                 callback(nv, ov);
