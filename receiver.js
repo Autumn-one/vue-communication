@@ -101,7 +101,7 @@ const receiver = {
                 queue.modifyOnceOfflineList.splice(index, 1);
             } else {
                 queue.modifyOnceList.push(intent);
-                vm.$once(intent, function (intentWrap2) {
+                vm.$once(intent, intentWrap2 => {
                     receiver.modifyResponseData(this, intentWrap2, allowStr);
                     resolve(true);
                     // 执行之后删除 intent
