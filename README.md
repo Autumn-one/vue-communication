@@ -5,6 +5,10 @@
 * 支持跨组件监听数据变化
 * 支持发送离线数据
 
+## 兼容 IE
+
+由于该组件未生成dist，所以如果你的浏览器有兼容IE的需求，请在 `vue.config.js` 中添加如下配置：`transpileDependencies:["vue-communication"]`
+
 ## 安装
 
 ```powershell
