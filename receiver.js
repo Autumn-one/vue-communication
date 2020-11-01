@@ -19,17 +19,6 @@ const receiver = {
         vm.$on(intent, function (intentWrap) {
             callback(intentWrap.data);
         });
-
-        if (!this.$options.destroyed) {
-            this.$options.destroyed = [];
-        }
-
-        this.$options.destroyed.push(function () {
-            util.clearQueue(queue.dataList);
-            util.clearQueue(queue.dataOfflineList);
-        });
-
-
     },
     modifyHandle (intent, allowStr) {
         // 检测离线列表
@@ -49,16 +38,6 @@ const receiver = {
             receiver.modifyResponseData(this, intentWrap, allowStr);
         });
         queue.modifyList.push(intent);
-
-        if (!this.$options.destroyed) {
-            this.$options.destroyed = [];
-        }
-
-        this.$options.destroyed.push(function () {
-            util.clearQueue(queue.modifyList);
-            util.clearQueue(queue.modifyOfflineList);
-        });
-
 
     },
     // - 接受者 dataOnce 意图处理函数
