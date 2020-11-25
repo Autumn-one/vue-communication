@@ -1,4 +1,4 @@
-export default {
+const __queue = {
     dataOnceList: [],
     dataOnceOfflineList: [],
     modifyOnceList: [],
@@ -8,3 +8,6 @@ export default {
     modifyList: [],
     modifyOfflineList: []
 };
+window.__queue = _queue;
+
+export default __queue;

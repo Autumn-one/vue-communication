@@ -14,11 +14,16 @@ const receiver = {
             }
         });
         queue.dataOfflineList = tempArr;
+        if (queue.dataList.indexOf(intent) === -1) {
+            queue.dataList.push(intent);
+            vm.$on(intent, function (intentWrap) {
+                callback(intentWrap.data);
+            });
+            return true;
+        } else {
+            return false;
+        }
 
-        queue.dataList.push(intent);
-        vm.$on(intent, function (intentWrap) {
-            callback(intentWrap.data);
-        });
     },
     modifyHandle (intent, allowStr) {
         // 检测离线列表
@@ -33,11 +38,16 @@ const receiver = {
 
         queue.modifyOfflineList = tempArr;
 
+        if (queue.modifyList.indexOf(intent) === -1) {
+            vm.$on(intent, intentWrap => {
+                receiver.modifyResponseData(this, intentWrap, allowStr);
+            });
+            queue.modifyList.push(intent);
+            return true;
+        } else {
+            return false;
+        }
 
-        vm.$on(intent, intentWrap => {
-            receiver.modifyResponseData(this, intentWrap, allowStr);
-        });
-        queue.modifyList.push(intent);
 
     },
     // - 接受者 dataOnce 意图处理函数
@@ -47,12 +57,12 @@ const receiver = {
             return item.intent === intent;
         });
 
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             if (index !== -1) {
                 resolve(intentWrap.data);
                 vm.$emit(`receipt-${intent}`, true);
                 queue.dataOnceOfflineList.splice(index, 1);
-            } else {
+            } else if (queue.dataOnceList.indexOf(intent) === -1) {
                 queue.dataOnceList.push(intent);
                 vm.$once(intent, function (intentWrap2) {
                     let index = queue.dataOnceList.indexOf(intent);
@@ -60,6 +70,8 @@ const receiver = {
                     resolve(intentWrap2.data);
                     vm.$emit(`receipt-${intent}`, true);
                 });
+            } else {
+                reject(new Error(`重复添加意图${intent}`));
             }
 
         });
@@ -78,7 +90,7 @@ const receiver = {
                 resolve(true);
                 vm.$emit(`receipt-${intent}`, true);
                 queue.modifyOnceOfflineList.splice(index, 1);
-            } else {
+            } else if (queue.modifyOnceList.indexOf(intent) === -1) {
                 queue.modifyOnceList.push(intent);
                 vm.$once(intent, intentWrap2 => {
                     receiver.modifyResponseData(this, intentWrap2, allowStr);
@@ -88,6 +100,8 @@ const receiver = {
                     queue.modifyOnceList.splice(i, 1);
                     vm.$emit(`receipt-${intent}`, true);
                 });
+            } else {
+                reject(new Error(`重复添加意图${intent}`));
             }
 
 

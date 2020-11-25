@@ -2,6 +2,7 @@ import Vue from "vue";
 import util from "./util";
 import sender from "./sender";
 import receiver from "./receiver";
+import cleaner from "./cleaner";
 
 export const vm = new Vue();
 
@@ -50,4 +51,5 @@ export function $receiver (intent, allowOrCallback) {
     }
 }
 
+export const $cleaner = cleaner;
 
