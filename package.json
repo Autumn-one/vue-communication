@@ -1,6 +1,6 @@
 {
   "name": "vue-communication",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "vue的可观测组件通信方案，任意关系组件直接通信，跨组件状态监听",
   "main": "index.js",
   "scripts": {
