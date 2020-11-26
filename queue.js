@@ -8,6 +8,6 @@ const __queue = {
     modifyList: [],
     modifyOfflineList: []
 };
-window.__queue = _queue;
+window.__queue = __queue;
 
 export default __queue;
