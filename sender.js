@@ -79,7 +79,8 @@ const sender = {
         if (isThisIntentEmptyInOffline) {
             offlineList.push(intentWrap);
         } else {
-            console.warn(`意图：${intent}被多次发送但是没有对应数量的接受者来处理它！！！`);
+            // 热更新的时候会不断报这个问题扰乱控制台打印 暂时不做处理
+            // console.warn(`意图：${intent}被多次发送但是没有对应数量的接受者来处理它！！！`);
         }
     },
     // * 发送者监听回执事件
